@@ -1,0 +1,13 @@
+{
+  "name": "shell",
+  "version": "0.0.1",
+  "private": true,
+  "engines": {
+    "node": "0.10.24"
+  },
+  "dependencies": {
+    "express.io": "^1.1.13",
+    "jade": "~1.6.0",
+    "stylus": "0.42.3"
+  }
+}

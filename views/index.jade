@@ -1,0 +1,57 @@
+extends layout
+block content
+	div(class="content")
+		button(id="iniciarSim" onclick="IniciarSimulacion();" class="btn btn-success").
+			Iniciar Simulación
+		button(id="detenerSim" onclick="DetenerSimulacion();" class="btn btn-danger" style="display:none;").
+			Detener Simulación
+		button(onclick="$('.informacion').slideToggle(500);" class="btn btn-default").
+			Mostrar/Ocultar Información
+		br
+		br
+		div(id="chartdiv" style="width:100%;height:400px;")
+		div(class="panel panel-primary col-md-4")
+			h4(class="panel-heading" onclick="Toggle('nodos');").
+				Nodes
+			div(id="info-nodos" class="informacion")
+				h5 Robot 1
+				p(id="robot1").
+					# Sent packets <span class="transmitidos"></span><br>
+					Type 1: <span class="tipo1"></span><br>
+					Type 2: <span class="tipo2"></span><br>
+					% Loss rate: <span class="perdidos"></span><br>
+				h5 Robot 2
+				p(id="robot2").
+					# Sent packets <span class="transmitidos"></span><br>
+					Type 1: <span class="tipo1"></span><br>
+					Type 2: <span class="tipo2"></span><br>
+					% Loss rate: <span class="perdidos"></span><br>
+		div(class="panel panel-success col-md-4")
+			h4(class="panel-heading" onclick="Toggle('sink');") SINK
+			div(id="info-sink" class="informacion")
+				p.
+					# Total Packets <span class="transmitidos"></span><br>
+					# Received Packets <span class="recibidos"></span><br>
+					Type 1: <span class="tipo1"></span><br>
+					Type 2: <span class="tipo2"></span><br>
+					% Loss rate: <span class="perdidos"></span><br>
+		div(class="panel panel-primary col-md-4")
+			h4(class="panel-heading" onclick="Toggle('more-nodos');").
+				Nodes
+			div(id="info-more-nodos" class="informacion")
+				h5 Robot 3
+				p(id="robot3").
+					# Sent packets <span class="transmitidos"></span><br>
+					Type 1: <span class="tipo1"></span><br>
+					Type 2: <span class="tipo2"></span><br>
+					% Loss rate: <span class="perdidos"></span><br>
+				h5 Robot 4
+				p(id="robot4").
+					# Sent packets <span class="transmitidos"></span><br>
+					Type 1: <span class="tipo1"></span><br>
+					Type 2: <span class="tipo2"></span><br>
+					% Loss rate: <span class="perdidos"></span><br>
+block scripts
+	script(src="amcharts/amcharts.js")
+	script(src="amcharts/serial.js")
+	script(src="js/script.js")

@@ -1,0 +1,13 @@
+extends layout
+block content
+	button(id="startSim").
+		Start
+	div(id="logs")
+
+block scripts
+	script(src="js/script.js")
+	script().
+		$('#startSim').on('click', function(event){
+			event.preventDefault();
+			alert("Hello");
+		});
