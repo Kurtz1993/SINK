@@ -1,13 +1,40 @@
 extends layout
 block content
-	button(id="startSim").
-		Start
+	form(id="startSim")
+		label(for="idRobot") Robot ID <br>
+		input(type="text" id="idRobot" title="Use a valid ID between 1 and 4" required autofocus)
+		br
+		button(id="submit" class="btn btn-success").
+			Start
+		button(id='stopSim' class="btn btn-danger" style="display:none;") Stop
 	div(id="logs")
 
 block scripts
-	script(src="js/script.js")
+	script(src="/js/client.js")
 	script().
-		$('#startSim').on('click', function(event){
-			event.preventDefault();
-			alert("Hello");
+		var idInterval;
+		var sending = false;
+		var socket = io();
+		$('form').on('submit', function(event){event.preventDefault();});
+		$('#submit').on('click', function(event){
+			var id = parseInt($('#idRobot').val());
+			if(id > 0 && id < 5 && !sending){
+				$('#submit').html('Stop').removeClass('btn-success').addClass('btn-danger').hide(0);
+				$('#stopSim').show(0);
+				sending = true;
+				idInterval = setInterval(function(){
+					socket.emit('data', NewPacket(id));
+				}, 100);
+				console.log(idInterval);
+			}
+			else{
+				alert("Only 4 robots can be online!")
+			}
+		});
+		$('#stopSim').on('click', function(event){
+			console.log(idInterval);
+			clearInterval(idInterval);
+			$('#submit').html('Start').removeClass('btn-danger').addClass('btn-success').show(0);
+			$('#stopSim').hide(0);
+			sending = false;
 		});
