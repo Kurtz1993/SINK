@@ -1,13 +1,13 @@
 {
-  "name": "shell",
+  "name": "SINK",
   "version": "0.0.1",
   "private": false,
   "engines": {
-    "node": "0.10.24"
+    "node": "0.10.33"
   },
   "dependencies": {
-    "express.io": "^1.1.13",
+    "express": "^4.10.4",
     "jade": "~1.6.0",
-    "stylus": "0.42.3"
+    "socket.io": "^1.2.1"
   }
 }
